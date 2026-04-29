@@ -1,58 +1,362 @@
 {
-    "Title": "Campus Life on the West Side",
-    "Credits": "Created by Adam Smith (amsmith@ucsc.edu).",
-    "InitialLocation": "Kresge",
+    "Title": "git remote set-url origin https://github.com/rhage-CS/Game1-b-Veldmoor-",
+    "Credits": "A detective story in a walled kingdom city. Find the truth.",
+    "InitialLocation": "DetectiveOffice",
+
     "Locations": {
-        "Kresge": {
-            "Body": "This is Kresge College, lots of nice trees.",
+
+        "DetectiveOffice": {
+            "Body": "Your office. Three case files sit on the desk — a dead merchant, a missing noble heir, a dockside informant who went quiet. All came in the same week. Where do you start?",
             "Choices": [
-                {
-                    "Text": "South",
-                    "Target": "Porter"
-                }
+                { "Text": "Head to the Market District",  "Target": "MarketSquare" },
+                { "Text": "Head to the Noble Quarter",    "Target": "NobleGate" },
+                { "Text": "Head to the Dockside",         "Target": "MainPier" },
+                { "Text": "Head to the Lower City",       "Target": "SlumCrossroads" }
             ]
         },
-        "Porter": {
-            "Body": "This is Porter College, the trees are nice here too.",
+
+        "MarketSquare": {
+            "Body": "Market square. Stalls packed tight. The spot where the merchant fell is roped off at the far end.",
             "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Kresge"
-                },
-                {
-                    "Text": "South",
-                    "Target": "Rachel Carson"
-                }
+                { "Text": "Talk to the barterwoman at the spice stall", "Target": "SpiceStall" },
+                { "Text": "Examine the burned stall",                   "Target": "BurnedStall" },
+                { "Text": "Visit the apothecary",                       "Target": "Apothecary" },
+                { "Text": "Check the back alley",                       "Target": "BackAlley" },
+                { "Text": "Go back to your office",                     "Target": "DetectiveOffice" }
             ]
         },
-        "Rachel Carson": {
-            "Body": "Rachel Carson College, more sun and fewer trees.",
+
+        "SpiceStall": {
+            "Body": "Sela the barterwoman glances around before speaking. 'The merchant had enemies. A man with a signet ring came by the week before he died. I'd seen that ring before — on a noble.' She won't say more.",
             "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Porter"
-                },
-                {
-                    "Text": "South",
-                    "Target": "Oakes"
-                }
+                { "Text": "Back to market square", "Target": "MarketSquare" }
             ]
         },
-        "Oakes": {
-            "Body": "Oakes College, even the buildings have tree bark on them.",
+
+        "BurnedStall": {
+            "Body": "The stall is ash and scorched wood. Among the debris you find a small soot-caked vial. Something was stored here that someone wanted gone.",
             "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Rachel Carson"
-                },
-                {
-                    "Text": "South",
-                    "Target": "Beyond"
-                }
+                { "Text": "Take the ash fragment and leave", "Target": "MarketSquare", "GivesItem": "ash_fragment" }
             ]
         },
-        "Beyond": {
-            "Body": "Grass, don't forget to check for ticks!"
+
+        "Apothecary": {
+            "Body": "Cluttered shelves. The apothecary is nervous. One jar has a false bottom — inside is a signet ring with a crest you don't recognise. Yet.",
+            "Choices": [
+                { "Text": "Take the signet ring and leave", "Target": "MarketSquare", "GivesItem": "signet_ring" }
+            ]
+        },
+
+        "BackAlley": {
+            "Body": "Torr, a beggar who sees everything, leans against the wall. 'That merchant dealt in things that weren't his. Someone from the docks arranged it. Same someone who keeps the old warehouse locked.'",
+            "Choices": [
+                { "Text": "Back to market square", "Target": "MarketSquare" }
+            ]
+        },
+
+        "NobleGate": {
+            "Body": "The entrance to the Noble Quarter. Guards wave you through.",
+            "Choices": [
+                { "Text": "Go to the Lord's manor", "Target": "LordsManor" },
+                { "Text": "Go to the cathedral",    "Target": "Cathedral" },
+                { "Text": "Go back to your office", "Target": "DetectiveOffice" }
+            ]
+        },
+
+        "LordsManor": {
+            "Body": "A large stone manor. The butler says the Lord is unavailable.",
+            "Choices": [
+                { "Text": "Talk to the cook in the kitchen", "Target": "ManorKitchen" },
+                { "Text": "Slip into the Lord's study",      "Target": "LordsStudy" },
+                { "Text": "Back to the Noble Gate",          "Target": "NobleGate" }
+            ]
+        },
+
+        "ManorKitchen": {
+            "Body": "The cook Berta talks without looking up. 'The Lord had a visitor three nights before the merchant died. Came in through the back. I saw the ring — same one the merchant wore sometimes.'",
+            "Choices": [
+                { "Text": "Back to the manor", "Target": "LordsManor" }
+            ]
+        },
+
+        "LordsStudy": {
+            "Body": "Books everywhere. On the desk, beneath a ledger, is a wax seal — the same crest as the signet ring from the apothecary.",
+            "Choices": [
+                { "Text": "Take the wax seal and leave", "Target": "LordsManor", "GivesItem": "wax_seal" }
+            ]
+        },
+
+        "Cathedral": {
+            "Body": "High ceilings, cold stone. The archives are kept by monk Aldus. There is a narrow door behind the altar with a wax-seal slot.",
+            "Choices": [
+                { "Text": "Talk to monk Aldus in the vestry",  "Target": "Vestry" },
+                { "Text": "Try the door behind the altar",     "Target": "HiddenPassage", "RequiresItem": "wax_seal", "LockedText": "The door has a wax-seal slot. You don't have anything to fit it." },
+                { "Text": "Back to the Noble Gate",            "Target": "NobleGate" }
+            ]
+        },
+
+        "Vestry": {
+            "Body": "Aldus pulls a record without being asked. 'The heir was moved three months ago. Not dead — hidden. The seal on the transfer document matches a private noble house, not the crown.'",
+            "Choices": [
+                { "Text": "Back to the cathedral", "Target": "Cathedral" }
+            ]
+        },
+
+        "HiddenPassage": {
+            "Body": "A narrow corridor behind the altar. At the end: a small room with a child's cot and a name carved into the wall. The heir was here. Recently.",
+            "Choices": [
+                { "Text": "Back to the cathedral", "Target": "Cathedral" }
+            ]
+        },
+
+        "MainPier": {
+            "Body": "The docks. Salt air, crates stacked high. The harbormaster's post is ahead, the old lighthouse to the left.",
+            "Choices": [
+                { "Text": "Go to the harbormaster's post",  "Target": "HarbormasterPost" },
+                { "Text": "Visit the old lighthouse",       "Target": "OldLighthouse" },
+                { "Text": "Talk to the fishmonger",         "Target": "FishMarket" },
+                { "Text": "Try the warehouse door",         "Target": "Warehouse", "RequiresItem": "signet_ring", "LockedText": "The warehouse door has a wax-seal slot. You don't have the right signet to open it." },
+                { "Text": "Go back to your office",         "Target": "DetectiveOffice" }
+            ]
+        },
+
+        "HarbormasterPost": {
+            "Body": "A heavy shipping ledger sits chained to the desk. The harbormaster is out.",
+            "Mechanism": "ledger",
+            "Choices": [
+                { "Text": "Back to the pier", "Target": "MainPier" }
+            ]
+        },
+
+        "OldLighthouse": {
+            "Body": "The lighthouse hasn't been lit in years. Under a loose board: a rolled cargo manifest — shipments that never appeared in any official record. Destination: the Noble Quarter.",
+            "Choices": [
+                { "Text": "Take the cargo manifest and leave", "Target": "MainPier", "GivesItem": "cargo_manifest" }
+            ]
+        },
+
+        "FishMarket": {
+            "Body": "Dag the fishmonger guts a fish without looking up. 'I saw them unloading crates at midnight. No markings. One man wore a signet ring. Same ring I've seen on that Lord up the hill.'",
+            "Choices": [
+                { "Text": "Back to the pier", "Target": "MainPier" }
+            ]
+        },
+
+        "Warehouse": {
+            "Body": "The signet ring fits the slot. The door swings open. Inside: unregistered goods and a copy of the shipping ledger with a name written clearly on the inside cover — the royal advisor.",
+            "Choices": [
+                { "Text": "Take the ledger copy and leave", "Target": "MainPier", "GivesItem": "ledger_copy" }
+            ]
+        },
+
+        "SlumCrossroads": {
+            "Body": "The lower city. Narrow streets. The Cracked Flagon tavern is to the left. The guard barracks ahead. A pawnshop in the corner.",
+            "Choices": [
+                { "Text": "Go to the Cracked Flagon",  "Target": "CrackedFlagon" },
+                { "Text": "Go to the guard barracks",  "Target": "GuardBarracks" },
+                { "Text": "Go to the pawnshop",        "Target": "Pawnshop" },
+                { "Text": "Try the sewer entrance",    "Target": "SewerEntrance" },
+                { "Text": "Go back to your office",    "Target": "DetectiveOffice" }
+            ]
+        },
+
+        "CrackedFlagon": {
+            "Body": "Smoky and loud. The barmaid leans over the counter. 'The guard captain takes payments from someone up the hill. Comes in flush every week, orders the good stuff.'",
+            "Choices": [
+                { "Text": "Back to the crossroads", "Target": "SlumCrossroads" }
+            ]
+        },
+
+        "GuardBarracks": {
+            "Body": "Mostly empty. A junior guard won't meet your eyes when you mention the captain.",
+            "Choices": [
+                { "Text": "Go to the captain's office", "Target": "CaptainsOffice" },
+                { "Text": "Back to the crossroads",     "Target": "SlumCrossroads" }
+            ]
+        },
+
+        "CaptainsOffice": {
+            "Body": "The captain is calm when he sees you. Too calm. 'I run a clean post.' There's a forged coin on his desk — the kind used to pay off city informants. He doesn't explain it.",
+            "Choices": [
+                { "Text": "Back to the barracks", "Target": "GuardBarracks" }
+            ]
+        },
+
+        "Pawnshop": {
+            "Body": "Among the tray of items: a noble's passage token — gets you through the High City gate — and a forged coin.",
+            "Choices": [
+                { "Text": "Take the noble's pass and forged coin", "Target": "SlumCrossroads", "GivesItem": "nobles_pass" }
+            ]
+        },
+
+        "SewerEntrance": {
+            "Body": "A hatch behind the barracks. Padlocked — but the lock takes a forged coin in place of a key. City corruption runs deep.",
+            "Choices": [
+                { "Text": "Use the forged coin and go down", "Target": "SewerTunnels", "RequiresItem": "nobles_pass", "LockedText": "The hatch is padlocked. You need something to work it open." },
+                { "Text": "Back to the crossroads",          "Target": "SlumCrossroads" }
+            ]
+        },
+
+        "SewerTunnels": {
+            "Body": "Damp stone. Scratched into the wall: a cipher and a partial name. The same crest as the wax seal. Someone used these tunnels regularly and left a trail.",
+            "Choices": [
+                { "Text": "Note the cipher and head back up", "Target": "SlumCrossroads", "GivesItem": "cipher_note" }
+            ]
+        },
+
+        "HighCityGate": {
+            "Body": "The gate to the High City. The guard looks you over.",
+            "Choices": [
+                { "Text": "Show the noble's pass and enter", "Target": "CrescentPromenade", "RequiresItem": "nobles_pass", "LockedText": "The guard stops you. 'No passage without a token.'" },
+                { "Text": "Go back to your office",          "Target": "DetectiveOffice" }
+            ]
+        },
+
+        "CrescentPromenade": {
+            "Body": "A wide boulevard. Quieter than the rest of the city. Old money lives up here.",
+            "Choices": [
+                { "Text": "Go to the auction house",      "Target": "AuctionFloor" },
+                { "Text": "Go to the scholar's tower",    "Target": "ReadingRoom" },
+                { "Text": "Go to the clockmaker's shop",  "Target": "ClockShopFront" },
+                { "Text": "Go to the noble baths",        "Target": "BathHall" },
+                { "Text": "Visit the collapsed manor",    "Target": "RuinsExterior" },
+                { "Text": "Go back to your office",       "Target": "DetectiveOffice" }
+            ]
+        },
+
+        "AuctionFloor": {
+            "Body": "Nobles bidding on objects. Master Erren runs the podium with practiced calm.",
+            "Choices": [
+                { "Text": "Talk to Master Erren",   "Target": "AuctioneerPodium" },
+                { "Text": "Try the back room",      "Target": "BackRoom", "RequiresItem": "auction_ledger", "LockedText": "The back room is bolted. You need the auction ledger as proof of inquiry before Erren will open it." },
+                { "Text": "Back to the promenade",  "Target": "CrescentPromenade" }
+            ]
+        },
+
+        "AuctioneerPodium": {
+            "Body": "Erren lowers his voice. 'A signet ring matching that crest came through here six months ago. Private buyer, unmarked coin. I kept a record — it's in the back room, but I need the auction ledger as proof before I open it to anyone.'",
+            "Choices": [
+                { "Text": "Back to the auction floor", "Target": "AuctionFloor" }
+            ]
+        },
+
+        "BackRoom": {
+            "Body": "The buyer's name is listed. It matches the warehouse ledger copy exactly. The royal advisor purchased the ring the same week the merchant was killed.",
+            "Choices": [
+                { "Text": "Back to the auction floor", "Target": "AuctionFloor" }
+            ]
+        },
+
+        "ReadingRoom": {
+            "Body": "Scholar Veyra is surrounded by open books. She looks up when you mention the cipher.",
+            "Choices": [
+                { "Text": "Show her the cipher note", "Target": "Observatory",        "RequiresItem": "cipher_note", "LockedText": "Veyra asks if you have the cipher. You don't have it yet." },
+                { "Text": "Back to the promenade",   "Target": "CrescentPromenade" }
+            ]
+        },
+
+        "Observatory": {
+            "Body": "Veyra leads you to the rooftop. She traces the cipher's origin — it was used in official palace correspondence. Only the royal advisor had access. She hands you a decryption key she made from the pattern.",
+            "Choices": [
+                { "Text": "Back to the reading room", "Target": "ReadingRoom", "GivesItem": "decryption_key" }
+            ]
+        },
+
+        "ClockShopFront": {
+            "Body": "Clocks everywhere. One on the wall is stopped at the wrong hour — the hour the merchant was killed.",
+            "Choices": [
+                { "Text": "Talk to Clockmaker Fen in the workshop", "Target": "ClockWorkshop" },
+                { "Text": "Back to the promenade",                  "Target": "CrescentPromenade" }
+            ]
+        },
+
+        "ClockWorkshop": {
+            "Body": "Fen is evasive but nervous, glancing at a large cabinet clock in the corner. You examine it and find a hidden compartment inside — the auction ledger, taken for safekeeping by someone who knew what it proved.",
+            "Choices": [
+                { "Text": "Take the auction ledger and leave", "Target": "ClockShopFront", "GivesItem": "auction_ledger" }
+            ]
+        },
+
+        "BathHall": {
+            "Body": "Steam and low conversation. Attendant Mira is folding towels in the corner.",
+            "Choices": [
+                { "Text": "Talk to attendant Mira",          "Target": "AttendantRoom" },
+                { "Text": "Check the private changing room", "Target": "ChangingRoom" },
+                { "Text": "Back to the promenade",           "Target": "CrescentPromenade" }
+            ]
+        },
+
+        "AttendantRoom": {
+            "Body": "Mira is nervous. 'A lady came in distressed last month. Said she'd seen something she wasn't meant to. Her brooch went missing that same day — she thought it was taken to keep her quiet.'",
+            "Choices": [
+                { "Text": "Back to the bath hall", "Target": "BathHall" }
+            ]
+        },
+
+        "ChangingRoom": {
+            "Body": "In the back of a locker, wrapped in cloth: a brooch with a noble crest. Taken and hidden here. The crest matches the manor.",
+            "Choices": [
+                { "Text": "Take the stolen brooch and leave", "Target": "BathHall", "GivesItem": "stolen_brooch" }
+            ]
+        },
+
+        "RuinsExterior": {
+            "Body": "A manor, recently collapsed. The stonework is scorched. This didn't fall on its own.",
+            "Choices": [
+                { "Text": "Look inside the ruins",  "Target": "Shelter" },
+                { "Text": "Back to the promenade", "Target": "CrescentPromenade" }
+            ]
+        },
+
+        "Shelter": {
+            "Body": "Behind a fallen wall: Pia, a young servant. She's frightened but talks. 'I was there. I saw who ordered it. The royal advisor came himself. Said the manor had to disappear along with everyone in it.' She writes down what she saw and hands it to you.",
+            "Choices": [
+                { "Text": "Take Pia's testimony and leave", "Target": "RuinsExterior", "GivesItem": "pias_testimony" }
+            ]
+        },
+
+        "PalaceGates": {
+            "Body": "The palace gates. Two guards stand watch. They won't let you through without hard evidence.",
+            "Choices": [
+                { "Text": "Present the ledger copy",    "Target": "PalaceCourtyard", "RequiresItem": "ledger_copy",    "LockedText": "The guards won't move. You need a ledger copy and a witness account before they'll let you through." },
+                { "Text": "Present Pia's testimony",   "Target": "PalaceCourtyard", "RequiresItem": "pias_testimony", "LockedText": "The guards won't move. You need a ledger copy and a witness account before they'll let you through." },
+                { "Text": "Go back to your office",    "Target": "DetectiveOffice" }
+            ]
+        },
+
+        "PalaceCourtyard": {
+            "Body": "You're inside. A royal blacksmith works near the armory. The advisor's chambers are to the right.",
+            "Choices": [
+                { "Text": "Go to the royal armory",        "Target": "RoyalArmory" },
+                { "Text": "Go to the advisor's chambers", "Target": "AdvisorsChambers" }
+            ]
+        },
+
+        "RoyalArmory": {
+            "Body": "The blacksmith recognises the crest on the wax seal immediately. 'That's the advisor's private seal. He had it made here six months ago. Paid extra to keep it off the record.' He hands you a palace access key.",
+            "Choices": [
+                { "Text": "Take the palace key and leave", "Target": "PalaceCourtyard", "GivesItem": "palace_key" }
+            ]
+        },
+
+        "AdvisorsChambers": {
+            "Body": "The advisor's door. Locked.",
+            "Choices": [
+                { "Text": "Use the palace key", "Target": "InnerSanctum",    "RequiresItem": "palace_key", "LockedText": "The door is locked. You need a key." },
+                { "Text": "Back to courtyard",  "Target": "PalaceCourtyard" }
+            ]
+        },
+
+        "InnerSanctum": {
+            "Body": "The advisor's private room. Among the documents: orders to move the heir, payments to the guard captain, and a letter arranging the merchant's death. Everything signed.",
+            "Choices": [
+                { "Text": "Take the documents and go to the throne room", "Target": "ThroneRoom", "GivesItem": "signed_orders" }
+            ]
+        },
+
+        "ThroneRoom": {
+            "Body": "You lay the evidence before the king — the ledger copy, Pia's testimony, the signed orders, the auction record, the cipher. The advisor is brought in. He says nothing. The king says enough. The heir is found within the day. The merchant's family is told the truth. The guard captain is arrested by nightfall. You walk out into cool air and go back to your office. The desk is clear.",
+            "Choices": []
         }
     }
 }
